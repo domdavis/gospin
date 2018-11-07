@@ -14,3 +14,48 @@ for log output is also provided.
 ```
 go get github.com/domdavis/gospin
 ```
+
+## Basic Usage
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/domdavis/gospin"
+    "time"
+)
+
+func main() {
+	fmt.Print("Working ")
+	s := gospin.New()
+	
+	for i := 0; i < 50; i++ {
+		s.Advance()
+	}
+	
+	s.Done()
+	fmt.Println("... done")
+}
+```
+
+## Advanced Usage
+
+Spinners can be constructed by providing a set of frames, specifying the width
+of the frame if non-standard characters are used, and the output destination.
+
+```
+s := gospin.New("☱", "☲", "☴")
+s.Width(1)
+s.Writer(os.Stderr)
+
+// Start drawing the spinner
+s.Advance()
+
+// ...do work, calling Advance() as the work progresses.
+
+// Finally remove the spinner.
+s.Done()
+```
+
+See the examples for a full list of predefined spinners.
