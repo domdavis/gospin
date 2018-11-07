@@ -13,6 +13,7 @@ setup:
 	go get github.com/mattn/goveralls
 
 build:
+	go get
 	go build
 
 clean:
